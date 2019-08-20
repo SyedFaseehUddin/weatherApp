@@ -12,14 +12,11 @@ export default class Main extends Component {
     onInputChange = (e) => {
         this.setState({
             inputValue: e.target.value
-        });
+        }, ()=>{ console.log("state changed " + JSON.stringify(this.state)) });
     }
 
     onFormSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-            inputValue: ''
-        })
     }
 
     render() {
