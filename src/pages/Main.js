@@ -28,6 +28,27 @@ class Main extends Component {
         this.props.getCityWeather(this.state.inputValue)
     }
 
+    renderSwitch = (param) => {
+        switch(param) {
+          case 'Mon':
+            return 'Monday';
+          case 'Tue':
+            return 'Tuesday';
+          case 'Wed':
+            return 'Wednesday';
+          case 'Thu':
+            return 'Thursday';
+          case 'Fri':
+            return 'Friday';
+          case 'Sat':
+            return 'Saturday';
+          case 'Sun':
+            return 'Sunday';
+          default:
+            return 'ERROR';
+        }
+      }
+
     render() {
         
     const {city , date , temperature, pressure, humidity, wind, description , main } = this.props.weather;
@@ -39,7 +60,10 @@ class Main extends Component {
                     <div className="weather-side">
                         <div className="weather-gradient"></div>
                         <div className="date-container">
-                        <h2 className="date-dayname">{date[0].split(' ')[0]}</h2><span className="date-day">{date[0].split(' ')[2] + " " + date[0].split(' ')[1] + " " + date[0].split(' ')[3]}</span><i className="location-icon"><MapPin size="15"/></i><span className="location">{city[0]}</span>
+                        <h2 className="date-dayname">
+                            {this.renderSwitch(date[0].split(' ')[0])}
+                        </h2>
+                        <span className="date-day">{date[0].split(' ')[2] + " " + date[0].split(' ')[1] + " " + date[0].split(' ')[3]}</span><i className="location-icon"><MapPin size="15"/></i><span className="location">{city[0]}</span>
                         </div>
                         <div className="weather-container">
                             {
