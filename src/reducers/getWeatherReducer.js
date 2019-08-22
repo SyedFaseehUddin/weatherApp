@@ -39,7 +39,7 @@ const filterResponse = (response) => {
     return dataArray;
 };
 
-const getWeatherReducer = (state = [], action) => {
+const getWeatherReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_CITY_WEATHER:
             state = Object.assign({}, ...filterResponse(action.payload));

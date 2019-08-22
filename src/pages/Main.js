@@ -50,15 +50,30 @@ class Main extends Component {
                         <div className="date-container">
                         <h2 className="date-dayname">{date[0].split(' ')[0]}</h2><span className="date-day">{date[0].split(' ')[2] + " " + date[0].split(' ')[1] + " " + date[0].split(' ')[3]}</span><i className="location-icon"><MapPin size="15"/></i><span className="location">{city[0]}</span>
                         </div>
-                        <div className="weather-container"><i className="weather-icon"><Sun size="50"/></i>
+                        <div className="weather-container">
+                            {
+                                main[0]==="Rain" ? (
+                                    <CloudRain size='50'/>
+                                ) : (
+                                    <Fragment>
+                                                {
+                                                    main[0]==="Snow" ? (
+                                                        <CloudSnow size='50'/>
+                                                    ) : (
+                                                        <Cloud size='50'/>
+                                                    )
+                                                }
+                                    </Fragment>
+                                )
+                            }
                         <h1 className="weather-temp">{Math.round(temperature[0])}°C</h1>
-                        <h3 className="weather-desc">{main[0]}</h3>
+                        <h3 className="weather-desc">{description[0]}</h3>
                         </div>
                     </div>
                     <div className="info-side">
                         <div className="today-info-container">
                         <div className="today-info">
-                            <div className="precipitation"> <span className="title">PRESSURE</span><span className="value">{pressure[0]} hpa</span>
+                            <div className="precipitation"> <span className="title">PRESSURE</span><span className="value">{Math.round(pressure[0])} hpa</span>
                             <div className="clear"></div>
                             </div>
                             <div className="humidity"> <span className="title">HUMIDITY</span><span className="value">{humidity[0]} %</span>
@@ -73,15 +88,31 @@ class Main extends Component {
                         <ul className="week-list">
                             {temperature.map((a, idx) => {
                                 return(
-                                <li key={idx}><i className="day-icon"><Cloud /></i><span className="day-name">{date[idx].split(' ')[0]}</span><span className="day-temp">{Math.round(temperature[idx])}°C</span></li>
+                                <li key={idx}>
+                                    {
+                                        main[0]==="Rain" ? (
+                                            <CloudRain/>
+                                        ) : (
+                                            <Fragment>
+                                                {
+                                                    main[0]==="Snow" ? (
+                                                        <CloudSnow/>
+                                                    ) : (
+                                                        <Cloud/>
+                                                    )
+                                                }
+                                            </Fragment>
+                                        )
+                                    }
+                                    <span className="day-name">{date[idx].split(' ')[0]}</span><span className="day-temp">{Math.round(temperature[idx])}°C</span></li>
                                 );
                             })}
-                            <div className="clear"></div>
+                           <div className="clear"></div>
                         </ul>
                         </div>
                         <form className="location-container">
                             <input type="text" placeholder="Enter city name..." value={this.state.inputValue} onChange={this.onInputChange}></input>
-                            <button className="location-button" onClick={this.onFormSubmit}> <MapPin size="15" /> <span>Change location</span></button>
+                            <button className="location-button" onClick={this.onFormSubmit}> <MapPin size="12" /> <span>Change location</span></button>
                         </form>
                     </div>
                     </div>
