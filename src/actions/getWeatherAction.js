@@ -7,7 +7,7 @@ import {
 const API_KEY = 'db778a0e5b529c3ed01d9da447eb0fb8';
 
 export const getCityWeather = (city) => {
-    const SITE_API = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${API_KEY}&units=metric`;
+    const SITE_API = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${API_KEY}&units=metric`;
 
     return (dispatch) => {
         axios.get(SITE_API)
