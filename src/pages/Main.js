@@ -25,7 +25,6 @@ class Main extends Component {
 
     onFormSubmit = (e) => {
         e.preventDefault();
-        console.log("submitted");
         this.props.getCityWeather(this.state.inputValue)
     }
 
