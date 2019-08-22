@@ -266,3 +266,16 @@ input:focus {
   background-position: left bottom;
   box-sizing: border-box !important;
 }
+
+
+/* media queries */
+
+/* phone screens */
+@media only screen and (max-width: 767px) {
+  .weather-side {
+    margin: 15%;
+    margin-top: 30%;
+    -webkit-transform: scale(1.1) perspective(1500px) rotateY(10deg);
+	        transform: scale(1.1) perspective(1500px) rotateY(10deg);
+  }
+}
