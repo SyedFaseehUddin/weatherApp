@@ -26,16 +26,15 @@ const filterResponse = (response) => {
             dataArray[0].city.push(inputArrayItem.city.name+', '+inputArrayItem.city.country);
             dataArray[0].date.push(getDate(item.dt));
             dataArray[0].temperature.push(item.temp.day);
-
-            // console.log("in loop "+ JSON.stringify(item.weather[0].description));
-            dataArray[0].pressure.push(item.pressure); //percentage
+            dataArray[0].pressure.push(item.pressure); //hpa
             dataArray[0].humidity.push(item.humidity); //percentage
-            dataArray[0].wind.push(item.speed); //kmph
+            dataArray[0].wind.push(item.speed); //m/s
             dataArray[0].description.push(item.weather[0].description);
             dataArray[0].main.push(item.weather[0].main);
+            return 0;
         });
+        return 0;
     });
-    console.log("dataarray : "+ JSON.stringify(dataArray))
     return dataArray;
 };
 
@@ -47,6 +46,8 @@ const getWeatherReducer = (state = {}, action) => {
         case RESET:
             state = [];
             break;
+        default:
+            return state;
     }
 
     return state;

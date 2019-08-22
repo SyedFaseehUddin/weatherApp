@@ -12,7 +12,6 @@ export const getCityWeather = (city) => {
     return (dispatch) => {
         axios.get(SITE_API)
             .then(response => {
-                console.log("res obj >> "+ JSON.stringify(response));
                 dispatch({
                     type: GET_CITY_WEATHER,
                     payload: response.data

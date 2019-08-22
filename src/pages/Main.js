@@ -32,19 +32,11 @@ class Main extends Component {
     render() {
         
     const {city , date , temperature, pressure, humidity, wind, description , main } = this.props.weather;
-    
-    if(date){
-        console.log("day : "+ JSON.stringify(date[0].split(' ')[0]) + "Date : " + date[0].split(' ')[2] + " " + date[0].split(' ')[1] + " " + date[0].split(' ')[3] )
-    }
-    if( city ) {
-        console.log("city "+ JSON.stringify(city[0]))
-    }
-        
+            
         return (
             <Fragment>
                 {wind ? (
                     <div className="container">
-                        {/* <div dangerouslySetInnerHTML={{__html:window.feather.icons.sun.toSvg()}} /> */}
                     <div className="weather-side">
                         <div className="weather-gradient"></div>
                         <div className="date-container">
