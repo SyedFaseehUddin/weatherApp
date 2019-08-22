@@ -26,6 +26,7 @@ class Main extends Component {
     onFormSubmit = (e) => {
         e.preventDefault();
         this.props.getCityWeather(this.state.inputValue)
+        window.scroll({top: 0, left: 0, behavior: 'smooth' });
     }
 
     renderSwitch = (param) => {

@@ -257,8 +257,6 @@ input {
   margin-bottom: 12px;
   width: 100%;
   text-transform: capitalize;
-}
-input:focus {
   background-image: linear-gradient(to right, #72EDF2 10%, #5151E5 100%); 
   background-size: calc(100% + 4px) 2px; /* 4px extra to cater for 2px border on right + 2px on left */
   background-repeat: no-repeat;
