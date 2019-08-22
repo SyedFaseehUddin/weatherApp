@@ -272,6 +272,9 @@ input:focus {
 
 /* phone screens */
 @media only screen and (max-width: 767px) {
+  body {
+    height: 140vh;
+  }
   .weather-side {
     margin: 15%;
     margin-top: 30%;
