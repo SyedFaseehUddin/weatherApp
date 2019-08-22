@@ -32,7 +32,7 @@ class Main extends Component {
     render() {
         
     const {city , date , temperature, pressure, humidity, wind, description , main } = this.props.weather;
-            
+
         return (
             <Fragment>
                 {wind ? (
@@ -109,7 +109,7 @@ class Main extends Component {
                     </div>
                     </div>
                 ) : (
-                    <div> Loading </div>
+                    <div style={{ fontSize: '24px' ,color: "white", fontWeight: '900px' }}> Loading.... </div>
                 ) } 
             
             </Fragment>
