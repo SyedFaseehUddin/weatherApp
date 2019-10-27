@@ -1,5 +1,5 @@
 import React, { Component , Fragment } from 'react';
-import { getCityWeather} from "../actions/getWeatherAction";
+import { getCityWeather, getGeoCityWeather} from "../actions/getWeatherAction";
 import { connect } from "react-redux";
 import PropTypes from  "prop-types";
 import { Sun, MapPin , Cloud, CloudRain, CloudSnow } from 'react-feather';
@@ -9,14 +9,32 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputValue: 'Bangalore',
+            inputValue: 'Hyderabad',
         };
     }
 
     componentDidMount(){
-        this.props.getCityWeather(this.state.inputValue);
+       this.getCoords()
     }
-
+    getCoords() {
+        if (window.navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(this.success, this.geoError)
+        }
+       }
+    success = (position) => {
+        this.props.getGeoCityWeather(position.coords.latitude, position.coords.longitude)
+        this.setState({
+            inputValue: ""
+        })
+    }
+    geoError = (err) => {
+        this.setState({
+            error: err
+        })
+        setTimeout(() => {
+            this.props.getCityWeather(this.state.inputValue)
+        }, 2000);
+    }
     onInputChange = (e) => {
         this.setState({
             inputValue: e.target.value
@@ -127,13 +145,21 @@ class Main extends Component {
                         </ul>
                         </div>
                         <form className="location-container">
-                            <input type="text" placeholder="Enter city name..." value={this.state.inputValue} onChange={this.onInputChange}></input>
+                            <input type="text" placeholder="Enter city name" value={this.state.inputValue} onChange={this.onInputChange}></input>
                             <button className="location-button" onClick={this.onFormSubmit}> <MapPin size="12" /> <span>Change location</span></button>
                         </form>
                     </div>
                     </div>
                 ) : (
-                    <div style={{ fontSize: '24px' ,color: "white", fontWeight: '900px' }}> Loading.... </div>
+                    <>
+                    {!this.state.error ? (
+                        <div style={{ fontSize: '24px' ,color: "white", fontWeight: '900px' }}> Loading.... </div>
+                    ) : (
+                        <div className="alert">
+                        <strong>{this.state.error.message}</strong>
+                      </div>
+                    )}
+                    </>
                 ) } 
             
             </Fragment>
@@ -150,8 +176,9 @@ Main.propTypes = {
   const mapStateToProps = state => ({
     weather: state.weather,  
     getCityWeather: PropTypes.func.isRequired,
+    getGeoCityWeather: PropTypes.func.isRequired,
   });
 
 export default connect(
     mapStateToProps,
-    { getCityWeather })(Main);
+    { getCityWeather, getGeoCityWeather })(Main);

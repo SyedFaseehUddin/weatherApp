@@ -1,4 +1,4 @@
-import {GET_CITY_WEATHER} from "../actions/types";
+import {GET_CITY_WEATHER, GET_GEO_CITY_WEATHER} from "../actions/types";
 import {RESET} from "../actions/types";
 
 const filterResponse = (response) => {
@@ -41,6 +41,9 @@ const filterResponse = (response) => {
 const getWeatherReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_CITY_WEATHER:
+            state = Object.assign({}, ...filterResponse(action.payload));
+            break;
+        case GET_GEO_CITY_WEATHER:
             state = Object.assign({}, ...filterResponse(action.payload));
             break;
         case RESET:

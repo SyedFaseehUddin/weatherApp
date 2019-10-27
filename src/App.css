@@ -265,6 +265,13 @@ input {
   box-sizing: border-box !important;
 }
 
+/* alert  */
+.alert {
+	border-radius: 50px;
+	padding: 20px;
+	background-color: #f44336;
+	color: white;
+  }
 
 /* media queries */
 
