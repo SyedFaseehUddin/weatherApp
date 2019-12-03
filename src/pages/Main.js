@@ -156,7 +156,8 @@ class Main extends Component {
                         <div style={{ fontSize: '24px' ,color: "white", fontWeight: '900px' }}> Loading.... </div>
                     ) : (
                         <div className="alert">
-                        <strong>{this.state.error.message}</strong>
+                        <p> <strong>Error occured while getting your location</strong> </p>
+                        {this.state.error.message}
                       </div>
                     )}
                     </>
