@@ -23,6 +23,7 @@ body {
 	height: 100vh;
 	font-family: 'Montserrat', sans-serif;
 	background-color: #343d4b;
+	color: white;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -286,4 +287,42 @@ input {
     -webkit-transform: scale(1.1) perspective(1500px) rotateY(10deg);
 	        transform: scale(1.1) perspective(1500px) rotateY(10deg);
   }
+}
+
+
+
+/* Error CSS */
+
+
+#mainDiv{
+    display: table;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
+
+.fof{
+	  display: table-cell;
+	  vertical-align: middle;
+}
+
+.fof h1{
+	  font-size: 50px;
+	  color: #f2f2f2;
+	  display: inline-block;
+	  padding-right: 12px;
+	  animation: type .5s alternate infinite;
+}
+
+@keyframes type{
+	  from{box-shadow: inset -3px 0px 0px #888;}
+	  to{box-shadow: inset -3px 0px 0px transparent;}
+}
+
+/* offline page */
+
+.offline-page {
+	margin-top: -200px;
+	padding: 20px;
+	align-items: initial !important;
 }

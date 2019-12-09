@@ -4,6 +4,7 @@ import './App.css';
 import { Provider } from "react-redux";
 import store from "./store";
 import Main from './pages/Main';
+import Error from './pages/Error';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Fragment>
       <Switch>
          <Route exact path="/" component={Main} />
+         <Route exact path="*" component={Error} />
       </Switch>
     </Fragment>
   </Router>

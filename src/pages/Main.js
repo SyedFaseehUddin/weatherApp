@@ -3,6 +3,8 @@ import { getCityWeather, getGeoCityWeather} from "../actions/getWeatherAction";
 import { connect } from "react-redux";
 import PropTypes from  "prop-types";
 import { Sun, MapPin , Cloud, CloudRain, CloudSnow } from 'react-feather';
+import Error from './Error';
+import OfflinePage from './OfflinePage';
 
 class Main extends Component {
     
@@ -12,10 +14,40 @@ class Main extends Component {
             inputValue: 'Hyderabad',
         };
     }
-
-    componentDidMount(){
-       this.getCoords()
-    }
+    
+    componentDidMount() {
+        this.getCoords()
+        this.handleConnectionChange();
+        window.addEventListener('online', this.handleConnectionChange);
+        window.addEventListener('offline', this.handleConnectionChange);
+      }
+  
+      componentWillUnmount() {
+        window.removeEventListener('online', this.handleConnectionChange);
+        window.removeEventListener('offline', this.handleConnectionChange);
+      }
+  
+  
+      handleConnectionChange = () => {
+        const condition = navigator.onLine ? 'online' : 'offline';
+        if (condition === 'online') {
+          const webPing = setInterval(
+            () => {
+              fetch('//google.com', {
+                mode: 'no-cors',
+                })
+              .then(() => {
+                this.setState({ isDisconnected: false }, () => {
+                  return clearInterval(webPing)
+                });
+              }).catch(() => this.setState({ isDisconnected: true }) )
+            }, 2000);
+          return;
+        }
+  
+        return this.setState({ isDisconnected: true });
+      }
+  
     getCoords() {
         if (window.navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(this.success, this.geoError)
@@ -70,11 +102,14 @@ class Main extends Component {
 
     render() {
         
+    const { isDisconnected } = this.state;
     const {city , date , temperature, pressure, humidity, wind, description , main } = this.props.weather;
 
         return (
             <Fragment>
-                {wind ? (
+                { !isDisconnected ? (
+                    <>
+                    {wind ? (
                     <div className="container">
                     <div className="weather-side">
                         <div className="weather-gradient"></div>
@@ -162,6 +197,11 @@ class Main extends Component {
                     )}
                     </>
                 ) } 
+                    </>
+                ) : (
+                    <OfflinePage />
+                ) }
+                
             
             </Fragment>
         )

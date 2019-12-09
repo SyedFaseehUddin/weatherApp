@@ -19,7 +19,7 @@ export const getCityWeather = (city) => {
                 });
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             })
     }
 };
