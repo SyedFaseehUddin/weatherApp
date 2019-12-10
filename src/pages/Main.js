@@ -17,14 +17,18 @@ class Main extends Component {
     }
     
     componentDidMount() {
-        Axios.get("http://www.geoplugin.net/json.gp")
+        Axios.get("https://ipapi.co/json/")
         .then(json => {
           this.setState({
-            inputValue: json.data.geoplugin_city
+            inputValue: json.data.city
           },()=> {
             this.props.getCityWeather(this.state.inputValue)
           })
         })
+        .catch((error) => {
+          // console.log(error);
+          this.props.getCityWeather(this.state.inputValue)
+      })
         this.handleConnectionChange();
         window.addEventListener('online', this.handleConnectionChange);
         window.addEventListener('offline', this.handleConnectionChange);
