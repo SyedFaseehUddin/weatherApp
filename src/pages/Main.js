@@ -5,6 +5,7 @@ import PropTypes from  "prop-types";
 import { Sun, MapPin , Cloud, CloudRain, CloudSnow } from 'react-feather';
 import Error from './Error';
 import OfflinePage from './OfflinePage';
+import Axios from 'axios';
 
 class Main extends Component {
     
@@ -16,7 +17,14 @@ class Main extends Component {
     }
     
     componentDidMount() {
-        this.getCoords()
+        Axios.get("http://www.geoplugin.net/json.gp")
+        .then(json => {
+          this.setState({
+            inputValue: json.data.geoplugin_city
+          },()=> {
+            this.props.getCityWeather(this.state.inputValue)
+          })
+        })
         this.handleConnectionChange();
         window.addEventListener('online', this.handleConnectionChange);
         window.addEventListener('offline', this.handleConnectionChange);
@@ -117,7 +125,11 @@ class Main extends Component {
                         <h2 className="date-dayname">
                             {this.renderSwitch(date[0].split(' ')[0])}
                         </h2>
-                        <span className="date-day">{date[0].split(' ')[2] + " " + date[0].split(' ')[1] + " " + date[0].split(' ')[3]}</span><i className="location-icon"><MapPin size="15"/></i><span className="location">{city[0]}</span>
+                        <span className="date-day">{date[0].split(' ')[2] + " " + date[0].split(' ')[1] + " " + date[0].split(' ')[3]}</span>
+                        <div className="tooltip"><i className="location-icon"><MapPin onClick={()=>{this.getCoords()}} size="15"/></i>
+                          <span className="tooltiptext">Get Geo location</span>
+                        </div>
+                        <span className="location">{city[0]}</span>
                         </div>
                         <div className="weather-container">
                             {
