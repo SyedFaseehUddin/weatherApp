@@ -16,6 +16,6 @@ More info : [PWA](https://en.wikipedia.org/wiki/Progressive_web_application)
 ## Screenshots
 
 <img src="https://github.com/SyedFaseehUddin/weatherApp/blob/master/Screenshots/1.PNG">
-<img src="https://github.com/SyedFaseehUddin/weatherApp/blob/master/Screenshots/2.jpg">
-<img src="https://github.com/SyedFaseehUddin/weatherApp/blob/master/Screenshots/3.jpg">
-<img src="https://github.com/SyedFaseehUddin/weatherApp/blob/master/Screenshots/pwa.png">
+<img src="https://github.com/SyedFaseehUddin/weatherApp/blob/master/Screenshots/2.jpg"  height="480" width="270">
+<img src="https://github.com/SyedFaseehUddin/weatherApp/blob/master/Screenshots/3.jpg" height="480" width="270">
+<img src="https://github.com/SyedFaseehUddin/weatherApp/blob/master/Screenshots/pwa.PNG">
